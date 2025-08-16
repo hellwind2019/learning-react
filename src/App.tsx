@@ -10,6 +10,7 @@ import ShopCard from "./components/ShopCard";
 import BugsCard from "./components/BugsCard";
 import TagsCard from "./components/TagsCard";
 import StateExersizesCard from "./components/GameCard";
+import Form from "./components/Form";
 
 function App() {
   const [cartItems, setCartItems] = useState(["Product1", "Product2"]);
@@ -36,7 +37,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col gap-20 items-center justify-center bg-gradient-to-br from-gray-50 to-gray-200 py-10 ">
+    <div className="min-h-screen flex flex-col gap-14 items-center justify-center bg-gradient-to-br from-gray-500 to-gray-900 py-8 ">
       <ShopCard
         cartItems={cartItems}
         onClear={() => {
@@ -46,48 +47,8 @@ function App() {
       <BugsCard bugs={bugs} onResolve={handleResolveBug} />
       <TagsCard tags={tags} addTag={addTag} removeTag={removeTag} />
       <StateExersizesCard />
+      <Form />
     </div>
   );
 }
 export default App;
-
-// function App() {
-//   let items = ["New York", "San Francisco", "Denver", "Kyiv", "London"];
-//   const handleSelectItem = (item: string) => {
-//     console.log(item);
-//   };
-//   return (
-//     <div>
-//       <ListGroup
-//         items={items}
-//         heading="Cities"
-//         onSelectItem={handleSelectItem}
-//       />
-//     </div>
-//   );
-// }
-
-// function App() {
-//   const [alertVisible, setAlertVisible] = useState(false);
-
-//   return (
-//     <>
-//       {alertVisible && (
-//         <Alert
-//           onDismiss={() => {
-//             setAlertVisible(false);
-//           }}
-//         >
-//           Hello World
-//         </Alert>
-//       )}
-//       <Button
-//         text="Click me"
-//         color="danger"
-//         onClick={() => {
-//           setAlertVisible(true);
-//         }}
-//       />
-//     </>
-//   );
-// }

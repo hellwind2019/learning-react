@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
+import { produce } from "immer";
 
 const StateExersizesCard = () => {
   const [game, setGame] = useState({
@@ -21,6 +22,24 @@ const StateExersizesCard = () => {
   const handlePizzaClick = () => {
     setPizza({ ...pizza, toppings: [...pizza.toppings, "Toping"] });
   };
+
+  const [cart, setCart] = useState({
+    discount: .1,
+    items: [
+      {id:1, title:"Coca-Cola", quantity:1},
+      {id:2, title:"Nuts", quantity:1},
+    ]
+  });
+  const handleCartClick = (id: number) => {
+    setCart(
+      produce((draft) =>{
+        const item = draft.items.find((item) => item.id === id)
+        if(item) item.quantity+=1
+    })
+    )
+    
+  }
+
   return (
     <Card className="max-w-md w-full gap-sm rounded-xl shadow-lg border border-gray-400 bg-neutral-300">
       <CardContent className="flex flex-col items-start">
@@ -43,6 +62,16 @@ const StateExersizesCard = () => {
         <Button onClick={handlePizzaClick} className="mt-2">
           Add topping
         </Button>
+
+        <h2 className="text-lg font-bold my-2">Cart</h2>
+        <p className="text-sm">Discount: {cart.discount * 100}%</p>
+       <ul>
+          {cart.items.map((item) => (
+            <li className="select-none" onClick={()=>{
+              handleCartClick(item.id)
+            }} key={item.id}>{item.title} : {item.quantity}x</li>
+          ))}
+        </ul> 
       </CardContent>
     </Card>
   );
