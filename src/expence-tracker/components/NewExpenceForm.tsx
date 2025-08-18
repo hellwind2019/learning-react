@@ -1,0 +1,54 @@
+import { Card, CardAction, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import React from "react";
+import { CategoryBox } from "./ComboBox";
+import { Button } from "@/components/ui/button";
+const categories = [
+  {
+    value: "next.js",
+    label: "Next.js",
+  },
+  {
+    value: "sveltekit",
+    label: "SvelteKit",
+  },
+  {
+    value: "nuxt.js",
+    label: "Nuxt.js",
+  },
+  {
+    value: "remix",
+    label: "Remix",
+  },
+  {
+    value: "astro",
+    label: "Astro",
+  },
+];
+const NewExpenceForm = () => {
+  return (
+    <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300 dark:bg-gray-800 dark:border-gray-700">
+      <CardContent>
+        <form className="flex gap- flex-col">
+          <Label htmlFor="desc">Description</Label>
+          <Input className="mb-4 mt-2" id="desc" type="text"></Input>
+          <Label htmlFor="amount">Amount</Label>
+          <Input className="mb-4 mt-2" id="amount" type="text"></Input>
+          <Label htmlFor="">Category</Label>
+          <CategoryBox
+            onSelect={(category) => {
+              console.log(category);
+            }}
+            categories={categories}
+          />
+        </form>
+        <CardAction>
+          <Button variant={"outline"}>Add</Button>
+        </CardAction>
+      </CardContent>
+    </Card>
+  );
+};
+
+export default NewExpenceForm;
