@@ -8,7 +8,7 @@ interface Props {
 
 const Cart = ({ cartItems, onClear }: Props) => {
   return (
-    <div className="bg-white dark:bg-gray-900 rounded-lg shadow p-4">
+    <div className="bg-white dark:bg-gray-700 rounded-lg shadow p-4">
       <h2 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">
         Cart
       </h2>
@@ -28,7 +28,9 @@ const Cart = ({ cartItems, onClear }: Props) => {
           ))
         )}
       </ul>
-      <Button onClick={onClear}>Clear cart</Button>
+      <Button variant={"outline"} onClick={onClear}>
+        Clear cart
+      </Button>
     </div>
   );
 };

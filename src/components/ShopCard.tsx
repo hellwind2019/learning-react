@@ -10,7 +10,7 @@ interface Props {
 
 const ShopCard = ({ cartItems, onClear }: Props) => {
   return (
-    <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300">
+    <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300 dark:bg-gray-800 dark:border-gray-700">
       {/* <CardHeader className="border-b pb-4 mb-4 bg-gray-200 rounded-t-xl"> */}
       <NavBar cartItemsCount={cartItems.length} />
       {/* </CardHeader> */}

@@ -12,16 +12,20 @@ function ListGroup({ items, heading, onSelectItem }: Props) {
 
   return (
     <>
-      <h1 className="text-lg font-semibold mb-3">{heading}</h1>
-      {items.length === 0 && <p className="text-gray-500">No item found</p>}
-      <ul className="bg-transparent rounded-lg dark:bg-gray-900 divide-y divide-gray-400 dark:divide-gray-700">
+      <h1 className="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-100">
+        {heading}
+      </h1>
+      {items.length === 0 && (
+        <p className="text-gray-500 dark:text-gray-400">No item found</p>
+      )}
+      <ul className="bg-red-500 dark:bg-transparent rounded-lg divide-y divide-red-300 dark:divide-red-700">
         {items.map((item, index) => (
           <li
-            className={`flex rounded-lg items-center justify-between px-4 py-3 hover:bg-green-300 cursor-pointer transition
+            className={`flex rounded-lg items-center justify-between px-4 py-3 my-1 border-gray-700 border-1 cursor-pointer transition
               ${
                 selectedIndex === index
-                  ? "bg-blue-300 dark:bg-blue-900"
-                  : "bg-blue-100"
+                  ? "bg-blue-300 dark:bg-blue-800"
+                  : "hover:bg-green-300 dark:hover:bg-green-900 bg-blue-100 dark:bg-gray-800"
               }`}
             key={item + index}
             onClick={() => {
