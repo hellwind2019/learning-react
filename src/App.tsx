@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import ExpenceTracker from "./expence-tracker/ExpenceTracker";
+import ExpenceTracker from "./expence-tracker/page";
 import MainNav from "./components/MainNav";
 import HomePage from "./components/HomePage";
 

@@ -1,29 +1,37 @@
 import { Card, CardAction, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React from "react";
+
 import { CategoryBox } from "./ComboBox";
 import { Button } from "@/components/ui/button";
-const categories = [
+export const categories = [
   {
-    value: "next.js",
-    label: "Next.js",
+    value: "groceries",
+    label: "Groceries",
   },
   {
-    value: "sveltekit",
-    label: "SvelteKit",
+    value: "cafe",
+    label: "Cafe",
   },
   {
-    value: "nuxt.js",
-    label: "Nuxt.js",
+    value: "games",
+    label: "Games",
   },
   {
-    value: "remix",
-    label: "Remix",
+    value: "transport",
+    label: "Transport",
   },
   {
-    value: "astro",
-    label: "Astro",
+    value: "utilities",
+    label: "Utilities",
+  },
+  {
+    value: "entertainment",
+    label: "Entertainment",
+  },
+  {
+    value: "other",
+    label: "Other",
   },
 ];
 const NewExpenceForm = () => {
@@ -44,7 +52,7 @@ const NewExpenceForm = () => {
           />
         </form>
         <CardAction>
-          <Button variant={"outline"}>Add</Button>
+          <Button className="bg-emerald-500">Add</Button>
         </CardAction>
       </CardContent>
     </Card>
