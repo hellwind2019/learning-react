@@ -4,7 +4,7 @@ import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import { Card, CardContent } from "@/components/ui/card";
 
-type Expence = {
+export type Expence = {
   id: string;
   description: string;
   amount: number;
@@ -65,7 +65,9 @@ function getData(): Promise<Expence[]> {
 function ExpenceTracker() {
   const [data, setData] = useState<Expence[]>([]);
   const [loading, setLoading] = useState(true);
-
+  const handleAddExpence = (exp: any) => {
+    setData([...data, exp]);
+  };
   useEffect(() => {
     getData().then((expences) => {
       setData(expences);
@@ -74,8 +76,8 @@ function ExpenceTracker() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col gap-14 items-center justify-start">
-      <NewExpenceForm />
+    <div className="min-h-screen flex lg:flex-row flex-col gap-14 lg:items-start items-center lg:justify-center justify-start">
+      <NewExpenceForm onSubmit={handleAddExpence} />
       {loading ? (
         <div className="text-gray-500">Loading...</div>
       ) : (
