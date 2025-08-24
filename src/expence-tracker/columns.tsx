@@ -19,7 +19,8 @@ type Expence = {
 };
 
 export const columns = (
-  onDelete: (id: string) => void
+  onDelete: (id: string) => void,
+  totalAmount: number
 ): ColumnDef<Expence>[] => [
   {
     accessorKey: "description",
@@ -36,6 +37,13 @@ export const columns = (
       }).format(amount);
 
       return <div className="text-right font-medium">{formatted}</div>;
+    },
+    footer: () => {
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(totalAmount);
+      return <div className="text-right font-bold">{formatted}</div>;
     },
   },
   {

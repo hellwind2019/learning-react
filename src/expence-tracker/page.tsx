@@ -86,7 +86,13 @@ function ExpenceTracker() {
       ) : (
         <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300 dark:bg-gray-800 dark:border-gray-700">
           <CardContent>
-            <DataTable columns={columns(handleDeleteExpence)} data={data} />
+            <DataTable
+              columns={columns(
+                handleDeleteExpence,
+                data.reduce((acc, exp) => exp.amount + acc, 0)
+              )}
+              data={data}
+            />
           </CardContent>
         </Card>
       )}
