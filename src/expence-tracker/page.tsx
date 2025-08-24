@@ -68,6 +68,9 @@ function ExpenceTracker() {
   const handleAddExpence = (exp: any) => {
     setData([...data, exp]);
   };
+  const handleDeleteExpence = (id: string) => {
+    setData(data.filter((exp) => exp.id !== id));
+  };
   useEffect(() => {
     getData().then((expences) => {
       setData(expences);
@@ -83,7 +86,7 @@ function ExpenceTracker() {
       ) : (
         <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300 dark:bg-gray-800 dark:border-gray-700">
           <CardContent>
-            <DataTable columns={columns} data={data} />
+            <DataTable columns={columns(handleDeleteExpence)} data={data} />
           </CardContent>
         </Card>
       )}

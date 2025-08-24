@@ -18,7 +18,9 @@ type Expence = {
   category: string;
 };
 
-export const columns: ColumnDef<Expence>[] = [
+export const columns = (
+  onDelete: (id: string) => void
+): ColumnDef<Expence>[] => [
   {
     accessorKey: "description",
     header: "Description",
@@ -57,7 +59,7 @@ export const columns: ColumnDef<Expence>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
               className="text-red-500"
-              onClick={() => console.log(expence.description)}
+              onClick={() => onDelete(expence.id)}
             >
               Delete
             </DropdownMenuItem>
