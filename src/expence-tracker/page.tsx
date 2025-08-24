@@ -66,11 +66,12 @@ function ExpenceTracker() {
   const [data, setData] = useState<Expence[]>([]);
   const [loading, setLoading] = useState(true);
   const handleAddExpence = (exp: any) => {
-    setData([...data, exp]);
+    setData((prev) => [...prev, { ...exp, id: String(Date.now()) }]);
   };
   const handleDeleteExpence = (id: string) => {
     setData(data.filter((exp) => exp.id !== id));
   };
+
   useEffect(() => {
     getData().then((expences) => {
       setData(expences);
