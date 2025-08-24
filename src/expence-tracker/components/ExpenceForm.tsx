@@ -34,7 +34,10 @@ export const categories = [
     label: "Other",
   },
 ];
-const NewExpenceForm = () => {
+interface Props {
+  onAdd: () => void;
+}
+const NewExpenceForm = ({ onAdd }: Props) => {
   return (
     <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300 dark:bg-gray-800 dark:border-gray-700">
       <CardContent>
@@ -52,7 +55,9 @@ const NewExpenceForm = () => {
           />
         </form>
         <CardAction>
-          <Button className="bg-emerald-500">Add</Button>
+          <Button onClick={onAdd} className="bg-emerald-500">
+            Add
+          </Button>
         </CardAction>
       </CardContent>
     </Card>

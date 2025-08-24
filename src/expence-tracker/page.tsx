@@ -11,7 +11,7 @@ type Expence = {
   category: string;
 };
 
-export const Expences: Expence[] = [
+export const initialExpences: Expence[] = [
   {
     id: "1",
     description: "Supermarket groceries",
@@ -58,7 +58,7 @@ export const Expences: Expence[] = [
 
 function getData(): Promise<Expence[]> {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(Expences), 500); // simulate async
+    setTimeout(() => resolve(initialExpences), 500); // simulate async
   });
 }
 
@@ -66,6 +66,15 @@ function ExpenceTracker() {
   const [data, setData] = useState<Expence[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const addExpence = (exp: Omit<Expence, "id">) => {
+    setData((prev) => [...prev, { ...exp, id: String(Date.now()) }]);
+  };
+  const exp: Expence = {
+    id: "0",
+    description: "Dummy",
+    amount: 999,
+    category: "Games",
+  };
   useEffect(() => {
     getData().then((expences) => {
       setData(expences);
@@ -75,7 +84,11 @@ function ExpenceTracker() {
 
   return (
     <div className="min-h-screen flex flex-col gap-14 items-center justify-start">
-      <NewExpenceForm />
+      <NewExpenceForm
+        onAdd={() => {
+          addExpence(exp);
+        }}
+      />
       {loading ? (
         <div className="text-gray-500">Loading...</div>
       ) : (
