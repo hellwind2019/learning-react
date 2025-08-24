@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 
 const MainNav = () => (
-  <nav className="flex items-center justify-center gap-4 py-4 mb-8 rounded-xl shadow-lg bg-white/80 dark:bg-gray-900/80 backdrop-blur border border-gray-300 dark:border-gray-800 mx-auto max-w-3xl">
+  <nav className="flex lg:flex-row sm:flex-col items-center justify-center gap-4 py-4 mb-8 rounded-xl shadow-lg bg-white/80 dark:bg-gray-900/80 backdrop-blur border border-gray-300 dark:border-gray-800 mx-auto sm:max-w-md lg:max-w-3xl">
     <NavLink
       to="/"
       end

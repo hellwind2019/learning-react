@@ -4,7 +4,7 @@ import { DataTable } from "./data-table";
 import { columns } from "./columns";
 import { Card, CardContent } from "@/components/ui/card";
 
-type Expence = {
+export type Expence = {
   id: string;
   description: string;
   amount: number;
@@ -65,15 +65,11 @@ function getData(): Promise<Expence[]> {
 function ExpenceTracker() {
   const [data, setData] = useState<Expence[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const addExpence = (exp: Omit<Expence, "id">) => {
-    setData((prev) => [...prev, { ...exp, id: String(Date.now()) }]);
+  const handleAddExpence = (exp: any) => {
+    setData([...data, exp]);
   };
-  const exp: Expence = {
-    id: "0",
-    description: "Dummy",
-    amount: 999,
-    category: "Games",
+  const handleDeleteExpence = (id: string) => {
+    setData(data.filter((exp) => exp.id !== id));
   };
   useEffect(() => {
     getData().then((expences) => {
@@ -83,18 +79,20 @@ function ExpenceTracker() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col gap-14 items-center justify-start">
-      <NewExpenceForm
-        onAdd={() => {
-          addExpence(exp);
-        }}
-      />
+    <div className="min-h-screen flex lg:flex-row flex-col gap-14 lg:items-start items-center lg:justify-center justify-start">
+      <NewExpenceForm onSubmit={handleAddExpence} />
       {loading ? (
         <div className="text-gray-500">Loading...</div>
       ) : (
         <Card className="max-w-md w-full rounded-xl shadow-lg border border-gray-400 bg-neutral-300 dark:bg-gray-800 dark:border-gray-700">
           <CardContent>
-            <DataTable columns={columns} data={data} />
+            <DataTable
+              columns={columns(
+                handleDeleteExpence,
+                data.reduce((acc, exp) => exp.amount + acc, 0)
+              )}
+              data={data}
+            />
           </CardContent>
         </Card>
       )}

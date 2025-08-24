@@ -18,7 +18,10 @@ type Expence = {
   category: string;
 };
 
-export const columns: ColumnDef<Expence>[] = [
+export const columns = (
+  onDelete: (id: string) => void,
+  totalAmount: number
+): ColumnDef<Expence>[] => [
   {
     accessorKey: "id",
     header: ({ column }) => {
@@ -54,6 +57,13 @@ export const columns: ColumnDef<Expence>[] = [
 
       return <div className="text-right font-medium">{formatted}</div>;
     },
+    footer: () => {
+      const formatted = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+      }).format(totalAmount);
+      return <div className="text-right font-bold">{formatted}</div>;
+    },
   },
   {
     accessorKey: "category",
@@ -76,7 +86,7 @@ export const columns: ColumnDef<Expence>[] = [
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
               className="text-red-500"
-              onClick={() => console.log(expence.description)}
+              onClick={() => onDelete(expence.id)}
             >
               Delete
             </DropdownMenuItem>
