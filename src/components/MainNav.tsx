@@ -1,32 +1,24 @@
 import { NavLink } from "react-router-dom";
+import HeaderNavLink from "./HeaderNavLink";
 
 const MainNav = () => (
-  <nav className="flex lg:flex-row sm:flex-col items-center justify-center gap-4 py-4 mb-8 rounded-xl shadow-lg bg-white/80 dark:bg-gray-900/80 backdrop-blur border border-gray-300 dark:border-gray-800 mx-auto sm:max-w-md lg:max-w-3xl">
-    <NavLink
-      to="/"
-      end
-      className={({ isActive }) =>
-        `px-4 py-2 rounded-lg font-medium transition ${
-          isActive
-            ? "bg-blue-500 text-white dark:bg-blue-700"
-            : "text-gray-800 dark:text-gray-100 hover:bg-blue-100 dark:hover:bg-blue-900"
-        }`
-      }
-    >
-      Home
-    </NavLink>
-    <NavLink
-      to="/expence-tracker"
-      className={({ isActive }) =>
-        `px-4 py-2 rounded-lg font-medium transition ${
-          isActive
-            ? "bg-blue-500 text-white dark:bg-blue-700"
-            : "text-gray-800 dark:text-gray-100 hover:bg-blue-100 dark:hover:bg-blue-900"
-        }`
-      }
-    >
-      Expence Tracker
-    </NavLink>
+  <nav
+    className="
+    flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-4
+    
+    py-2 lg:py-4 mb-4 lg:mb-8
+    
+    rounded-xl border shadow-lg backdrop-blur
+    
+    bg-white/80 dark:bg-gray-900/80
+    border-gray-300 dark:border-gray-800
+    
+    mx-auto max-w-sm sm:max-w-sm lg:max-w-3xl
+  "
+  >
+    <HeaderNavLink url="/">Main</HeaderNavLink>
+    <HeaderNavLink url="/expence-tracker">Expence Tracker</HeaderNavLink>
+    <HeaderNavLink url="/backend">Backend</HeaderNavLink>
     <button
       onClick={() => document.body.classList.toggle("dark")}
       className="px-4 py-2 rounded-lg font-medium transition "

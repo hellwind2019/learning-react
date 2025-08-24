@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ExpenceTracker from "./expence-tracker/page";
 import MainNav from "./components/MainNav";
 import HomePage from "./components/HomePage";
+import BackendPage from "./backend/page";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/expence-tracker" element={<ExpenceTracker />} />
+          <Route path="/backend" element={<BackendPage />} />
         </Routes>
       </div>
     </BrowserRouter>
